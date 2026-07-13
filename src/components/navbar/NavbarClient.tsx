@@ -1,0 +1,100 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { Button, Avatar } from "@heroui/react";
+import { HiMenu, HiX } from "react-icons/hi";
+
+export default function AppNavbar() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const menuItems = ["Home", "Players", "News", "Add Player", "Manage Players"];
+
+  return (
+    <nav className="sticky top-0 z-40 w-full border-b border-[#1F2823] bg-[#0A0F0D]/70 backdrop-blur-lg">
+      <header className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-6">
+        {/* Left Side: Brand Logo & Mobile Toggle */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="grid h-9 w-9 place-items-center rounded-md border border-[#2A352E] text-[#8A948E] md:hidden"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <HiX size={20} /> : <HiMenu size={20} />}
+          </button>
+
+          <Link
+            href="#"
+            className="flex items-center gap-2.5 font-['Space_Grotesk'] text-[22px] font-bold tracking-wide text-[#E8ECE9]"
+          >
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-[#3FEA7A] to-[#1fb862] text-sm font-bold text-[#062012]">
+              O
+            </span>
+            ONSIDE
+          </Link>
+        </div>
+
+        {/* Center: Desktop Navigation Links */}
+        <ul className="hidden items-center gap-1 md:flex">
+          <li>
+            <Link
+              href="#"
+              className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#3FEA7A] bg-[#111714]"
+            >
+              Home
+            </Link>
+          </li>
+          {menuItems.slice(1).map((item, index) => (
+            <li key={index}>
+              <Link
+                href="#"
+                className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#8A948E] hover:bg-[#111714] hover:text-[#E8ECE9] transition-colors"
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right Side: Actions Menu */}
+        <div className="flex items-center gap-3">
+          <Button
+            as={Link}
+            href="#"
+            variant="bordered"
+            size="sm"
+            className="hidden h-9 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#3FEA7A] md:inline-flex"
+          >
+            Sign out
+          </Button>
+          <Avatar
+            name="SH"
+            className="h-9 w-9 text-xs font-bold text-[#062012] bg-gradient-to-br from-[#3FEA7A] to-[#F5B942]"
+          />
+        </div>
+      </header>
+
+      {/* Mobile Drawer Dropdown */}
+      {isMenuOpen && (
+        <div className="border-t border-[#1F2823] bg-[#0A0F0D] px-6 py-4 md:hidden flex flex-col gap-2">
+          {menuItems.map((item, index) => (
+            <Link
+              key={index}
+              className={`w-full block rounded-lg px-3 py-2 text-sm font-medium ${index === 0 ? "text-[#3FEA7A] bg-[#111714]" : "text-[#8A948E]"}`}
+              href="#"
+            >
+              {item}
+            </Link>
+          ))}
+          <div className="h-px bg-[#1F2823] my-2" />
+          <Button
+            variant="bordered"
+            className="w-full border-[#2A352E] text-[#E8ECE9] h-10 rounded-[10px]"
+          >
+            Sign out
+          </Button>
+        </div>
+      )}
+    </nav>
+  );
+}
