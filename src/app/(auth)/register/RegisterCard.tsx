@@ -258,7 +258,10 @@ export default function RegisterCard() {
 
       <div className="text-center mt-6 text-sm text-[#8A948E]">
         Already have an account?{" "}
-        <Link href="#" className="text-[#3FEA7A] font-medium hover:underline">
+        <Link
+          href="/signin"
+          className="text-[#3FEA7A] font-medium hover:underline"
+        >
           Sign in
         </Link>
       </div>

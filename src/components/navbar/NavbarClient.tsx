@@ -6,13 +6,22 @@ import { Button } from "@heroui/react";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { redirect, useRouter } from "next/navigation";
 
 export default function NavbarClient({ user }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const router = useRouter();
   const handleSignOut = async (): Promise<void> => {
-    const res = await authClient.signOut();
-    // console.log(data, error);
-    console.log(res);
+    const { data, error } = await authClient.signOut();
+    if (data?.success) {
+      toast.success("Logged out successfully");
+      router.refresh();
+      redirect("/");
+    }
+    if (error) {
+      toast.error(`${error.message}`);
+    }
   };
 
   const menuItems = ["Home", "Players", "News", "Add Player", "Manage Players"];
@@ -20,7 +29,6 @@ export default function NavbarClient({ user }) {
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-[#1F2823] bg-[#0A0F0D]/70 backdrop-blur-lg">
       <header className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-6">
-        {/* Left Side: Brand Logo & Mobile Toggle */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -31,7 +39,7 @@ export default function NavbarClient({ user }) {
           </button>
 
           <Link
-            href="#"
+            href="/"
             className="flex items-center gap-2.5 font-['Space_Grotesk'] text-[22px] font-bold tracking-wide text-[#E8ECE9]"
           >
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-[#3FEA7A] to-[#1fb862] text-sm font-bold text-[#062012]">
@@ -44,7 +52,7 @@ export default function NavbarClient({ user }) {
         <ul className="hidden items-center gap-1 md:flex">
           <li>
             <Link
-              href="#"
+              href="/"
               className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#3FEA7A] bg-[#111714]"
             >
               Home
@@ -62,14 +70,14 @@ export default function NavbarClient({ user }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div>
           {user ? (
             <div className="flex items-center gap-1.5">
               <Button
                 onClick={handleSignOut}
                 variant="bordered"
                 size="sm"
-                className="hidden h-9 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#ea3f3f] md:inline-flex"
+                className="hidden py-2.5 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#ea3f3f] md:inline-flex"
               >
                 Sign out
               </Button>
@@ -88,7 +96,7 @@ export default function NavbarClient({ user }) {
               href="/signin"
               variant="bordered"
               size="sm"
-              className="hidden h-9 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#3FEA7A] md:inline-flex"
+              className="hidden py-2.5 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#3FEA7A] md:inline-flex"
             >
               Sign In
             </Link>
