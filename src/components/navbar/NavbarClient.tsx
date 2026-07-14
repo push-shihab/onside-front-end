@@ -2,11 +2,18 @@
 
 import React from "react";
 import Link from "next/link";
-import { Button, Avatar } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { HiMenu, HiX } from "react-icons/hi";
+import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
 
-export default function AppNavbar() {
+export default function NavbarClient({ user }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const handleSignOut = async (): Promise<void> => {
+    const res = await authClient.signOut();
+    // console.log(data, error);
+    console.log(res);
+  };
 
   const menuItems = ["Home", "Players", "News", "Add Player", "Manage Players"];
 
@@ -34,7 +41,6 @@ export default function AppNavbar() {
           </Link>
         </div>
 
-        {/* Center: Desktop Navigation Links */}
         <ul className="hidden items-center gap-1 md:flex">
           <li>
             <Link
@@ -56,25 +62,40 @@ export default function AppNavbar() {
           ))}
         </ul>
 
-        {/* Right Side: Actions Menu */}
         <div className="flex items-center gap-3">
-          <Button
-            as={Link}
-            href="#"
-            variant="bordered"
-            size="sm"
-            className="hidden h-9 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#3FEA7A] md:inline-flex"
-          >
-            Sign out
-          </Button>
-          <Avatar
-            name="SH"
-            className="h-9 w-9 text-xs font-bold text-[#062012] bg-gradient-to-br from-[#3FEA7A] to-[#F5B942]"
-          />
+          {user ? (
+            <div className="flex items-center gap-1.5">
+              <Button
+                onClick={handleSignOut}
+                variant="bordered"
+                size="sm"
+                className="hidden h-9 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#ea3f3f] md:inline-flex"
+              >
+                Sign out
+              </Button>
+              <div className="w-11 h-11 overflow-hidden rounded-full">
+                <Image
+                  src={user?.image}
+                  alt={user?.name}
+                  width={200}
+                  height={200}
+                  className="w-11 h-11 object-cover"
+                />
+              </div>
+            </div>
+          ) : (
+            <Link
+              href="/signin"
+              variant="bordered"
+              size="sm"
+              className="hidden h-9 px-4 rounded-[10px] border-[#2A352E] font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#3FEA7A] md:inline-flex"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
       </header>
 
-      {/* Mobile Drawer Dropdown */}
       {isMenuOpen && (
         <div className="border-t border-[#1F2823] bg-[#0A0F0D] px-6 py-4 md:hidden flex flex-col gap-2">
           {menuItems.map((item, index) => (
