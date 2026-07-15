@@ -26,10 +26,9 @@ export default function Newsletter() {
             >
               <Input
                 type="email"
-                defaultValue="shihab@onside.io"
                 placeholder="you@club.com"
                 variant="border"
-                className="w-full h-12 text-[#393b3a]"
+                className="w-full h-12"
               />
               <Button
                 type="submit"

@@ -28,7 +28,8 @@ export default function NavbarClient({ user }) {
   const menuItems = [
     { label: "Home", link: "/" },
     { label: "Players", link: "/players" },
-    { label: "News", link: "/news" },
+    { label: "About", link: "/about" },
+    { label: "Contact", link: "/contact" },
     { label: "Add Players", link: "/players/add" },
     { label: "Manage Players", link: "/players/manage" },
   ];

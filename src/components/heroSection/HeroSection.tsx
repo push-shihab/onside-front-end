@@ -1,5 +1,6 @@
 "use client";
 import { Button, Card, Chip } from "@heroui/react";
+import Link from "next/link";
 import { HiArrowUpRight } from "react-icons/hi2";
 
 export default function HeroSection() {
@@ -29,9 +30,12 @@ export default function HeroSection() {
               people who actually watch the game.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button className="bg-[#3FEA7A] text-[#062012] font-bold px-6 h-11 rounded-[10px]">
+              <Link
+                href={"/players"}
+                className="bg-[#3FEA7A] text-[#062012] font-bold px-6 py-2.5 rounded-[10px]"
+              >
                 Explore players
-              </Button>
+              </Link>
               <Button className="border-[#2A352E] text-[#E8ECE9] font-bold px-6 h-11 rounded-[10px] bg-transparent hover:border-[#3FEA7A] hover:text-[#3FEA7A]">
                 Read latest news
               </Button>

@@ -3,14 +3,9 @@ import { Table } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { BiUserMinus } from "react-icons/bi";
+import DeletePlayerModal from "./DeletePlayerModal";
 
 export default function ManagePlayers({ players }) {
-  const handleDelete = (id: string) => {
-    console.log(
-      `Triggering structural deletion confirm flow for player ID: ${id}`,
-    );
-  };
-
   return (
     <div className="py-10 min-h-screen bg-[#0A0F0D] text-[#E8ECE9] font-sans antialiased">
       <style jsx global>{`
@@ -172,13 +167,7 @@ export default function ManagePlayers({ players }) {
                           >
                             ✎
                           </Link>
-                          <button
-                            onClick={() => handleDelete(player._id)}
-                            className="w-8 h-8 rounded-lg bg-[#111714] border border-[#1F2823] grid place-items-center text-xs text-[#8A948E] cursor-pointer hover:border-[#E86B6B] hover:text-[#E86B6B] transition-all"
-                            title="Delete Player"
-                          >
-                            ✕
-                          </button>
+                          <DeletePlayerModal player={player} />
                         </div>
                       </Table.Cell>
                     </Table.Row>
