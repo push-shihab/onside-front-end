@@ -166,7 +166,7 @@ export default function ManagePlayers({ players }) {
                       <Table.Cell>
                         <div className="flex gap-1.5 justify-end">
                           <Link
-                            href={"/player/edit"}
+                            href={`/players/edit/${player._id}`}
                             className="w-8 h-8 rounded-lg bg-[#111714] border border-[#1F2823] grid place-items-center text-xs text-[#8A948E] cursor-pointer hover:border-[#3FEA7A] hover:text-[#3FEA7A] transition-all"
                             title="Edit Player"
                           >
