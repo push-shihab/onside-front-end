@@ -1,10 +1,12 @@
 import React from "react";
 import AddPlayerForm from "./AddPlayerForm";
+import { getUserSession } from "@/utils/session";
 
-const page = () => {
+const page = async () => {
+  const user = await getUserSession();
   return (
     <div>
-      <AddPlayerForm />
+      <AddPlayerForm user={user} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { createPlayer } from "@/utils/createData";
+import { getUserSession } from "@/utils/session";
 import { redirect } from "next/navigation";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -37,7 +38,7 @@ interface PlayerFormInput {
   dateOfBirth: string;
 }
 
-export default function AddPlayerForm() {
+export default function AddPlayerForm({ user }) {
   const {
     register,
     handleSubmit,
@@ -65,12 +66,13 @@ export default function AddPlayerForm() {
         defending: Number(data.attribute.defending),
         physical: Number(data.attribute.physical),
       },
+      userId: user.id,
     };
 
     const res = await createPlayer(structuredPayload);
     if (res.insertedId) {
       toast.success("Successfully created a player");
-      redirect("/players");
+      redirect("/players/manage");
     } else {
       toast.error("Something went wrong");
     }

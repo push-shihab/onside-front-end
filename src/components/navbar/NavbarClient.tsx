@@ -8,7 +8,6 @@ import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { redirect, usePathname, useRouter } from "next/navigation";
-
 export default function NavbarClient({ user }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const router = useRouter();
@@ -38,7 +37,7 @@ export default function NavbarClient({ user }) {
     if (link === "/") {
       return path === "/";
     }
-    return path === link || path.startsWith(`${link}/`);
+    return path === link;
   };
 
   return (

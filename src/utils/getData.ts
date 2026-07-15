@@ -8,3 +8,8 @@ export const getIndividualPlayerData = async (id: string) => {
   const res = await fetch(`${baseUrl}/api/player?id=${id}`);
   return res.json();
 };
+
+export const getPlayersByUser = async (id: string) => {
+  const res = await fetch(`${baseUrl}/api/user/players?id=${id}`);
+  return res.json();
+};
