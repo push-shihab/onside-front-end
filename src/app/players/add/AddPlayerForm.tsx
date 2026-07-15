@@ -1,7 +1,6 @@
 "use client";
 
 import { createPlayer } from "@/utils/createData";
-import { getUserSession } from "@/utils/session";
 import { redirect } from "next/navigation";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -37,8 +36,13 @@ interface PlayerFormInput {
   };
   dateOfBirth: string;
 }
+interface AddPlayerFormProps {
+  user: {
+    id: string;
+  };
+}
 
-export default function AddPlayerForm({ user }) {
+export default function AddPlayerForm({ user }: AddPlayerFormProps) {
   const {
     register,
     handleSubmit,

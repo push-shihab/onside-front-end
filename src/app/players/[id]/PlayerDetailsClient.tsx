@@ -1,8 +1,14 @@
 "use client";
 import Image from "next/image";
-import PlayerOverviewCard from "./PlayerOverviewCard";
+import PlayerOverviewCard, { PlayerData } from "./PlayerOverviewCard";
 
-export default function PlayerDetailsClient({ player }) {
+interface PlayerDetailsClientProps {
+  player: PlayerData;
+}
+
+export default function PlayerDetailsClient({
+  player,
+}: PlayerDetailsClientProps) {
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset =

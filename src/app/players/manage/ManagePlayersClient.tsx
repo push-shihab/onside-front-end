@@ -4,8 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { BiUserMinus } from "react-icons/bi";
 import DeletePlayerModal from "./DeletePlayerModal";
+interface Player {
+  _id: string;
+  name: string;
+  position: string;
+  clubName: string;
+  imageLink: string;
+  overallRating: number;
+  currentMarketValue: string;
+  contractExpiryDate: string;
+}
 
-export default function ManagePlayers({ players }) {
+interface ManagePlayersProps {
+  players: Player[];
+}
+
+export default function ManagePlayers({ players }: ManagePlayersProps) {
   return (
     <div className="py-10 min-h-screen bg-[#0A0F0D] text-[#E8ECE9] font-sans antialiased">
       <style jsx global>{`

@@ -4,7 +4,24 @@ import ShowPlayer from "@/components/featuredPlayers/ShowPlayer";
 import React, { useState, useMemo } from "react";
 import { FaSearch } from "react-icons/fa";
 
-export default function AllPlayersClient({ players }) {
+interface Player {
+  _id: string;
+  name: string;
+  position: string;
+  clubName: string;
+  imageLink: string;
+  overallRating: number;
+  currentMarketValue: string;
+  contractExpiryDate: string;
+  country: string;
+  age: number;
+}
+
+interface ManagePlayersProps {
+  players: Player[];
+}
+
+export default function AllPlayersClient({ players }: ManagePlayersProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<"high-to-low" | "low-to-high">(
     "high-to-low",

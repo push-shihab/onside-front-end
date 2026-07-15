@@ -1,11 +1,27 @@
-import { Avatar, Card, Chip } from "@heroui/react";
+import { Card, Chip } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { HiMiniStar } from "react-icons/hi2";
+interface Player {
+  _id: string;
+  name: string;
+  position: string;
+  clubName: string;
+  imageLink: string;
+  overallRating: number;
+  currentMarketValue: string;
+  contractExpiryDate: string;
+  country: string;
+  age: number;
+}
 
-const ShowPlayer = ({ p }) => {
+interface ShowPlayerProps {
+  p: Player;
+}
+
+const ShowPlayer = ({ p }: ShowPlayerProps) => {
   return (
     <Card className="border border-[#1F2823] bg-[#141B17] rounded-[14px] hover:border-[#3FEA7A] transition-all duration-200 hover:-translate-y-1">
       <Card.Description className="p-[22px] flex flex-col gap-4">

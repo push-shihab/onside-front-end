@@ -8,7 +8,12 @@ import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { redirect, usePathname, useRouter } from "next/navigation";
-export default function NavbarClient({ user }) {
+interface NavUser {
+  user: {
+    id: string;
+  };
+}
+export default function NavbarClient({ user }: NavUser) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const router = useRouter();
   const path = usePathname();

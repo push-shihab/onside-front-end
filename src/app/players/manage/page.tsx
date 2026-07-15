@@ -2,10 +2,17 @@ import React from "react";
 import ManagePlayers from "./ManagePlayersClient";
 import { getPlayersByUser } from "@/utils/getData";
 import { getUserSession } from "@/utils/session";
+import { redirect } from "next/navigation";
 
 const page = async () => {
   const user = await getUserSession();
-  const players = await getPlayersByUser(user?.id);
+
+  if (!user) {
+    redirect("/signin");
+  }
+
+  const players = await getPlayersByUser(user.id);
+
   return (
     <div>
       <ManagePlayers players={players} />

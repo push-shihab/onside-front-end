@@ -38,10 +38,6 @@ interface PlayerOverviewCardProps {
 export default function PlayerOverviewCard({
   player,
 }: PlayerOverviewCardProps) {
-  // Convert standard circle calculations based on a rating out of 100
-  const radius = 70;
-  const circumference = 2 * Math.PI * radius;
-
   return (
     <div className="flex flex-col gap-6">
       <div className="bg-[#141B17] border border-[#1F2823] rounded-[14px] p-7">

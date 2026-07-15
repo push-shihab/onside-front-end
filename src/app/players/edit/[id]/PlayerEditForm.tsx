@@ -41,7 +41,14 @@ interface PlayerFormData {
   attribute: PlayerAttributes;
 }
 
-export default function PlayerEditForm({ player }) {
+interface Player extends PlayerFormData {
+  _id: string;
+}
+
+interface PlayerEditFormProps {
+  player: Player;
+}
+export default function PlayerEditForm({ player }: PlayerEditFormProps) {
   const initialPlayerData: PlayerFormData = {
     clubName: player.clubName,
     age: player.age,
