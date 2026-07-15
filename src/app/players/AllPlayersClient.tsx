@@ -2,21 +2,19 @@
 
 import ShowPlayer from "@/components/featuredPlayers/ShowPlayer";
 import React, { useState, useMemo } from "react";
+import { FaSearch } from "react-icons/fa";
 
 export default function AllPlayersClient({ players }) {
-  // State definitions
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<"high-to-low" | "low-to-high">(
     "high-to-low",
   );
 
-  // Search filtering logic & calculations
   const filteredAndSortedPlayers = useMemo(() => {
     const searchLower = searchQuery.trim().toLowerCase();
 
     return (players || [])
       .filter((player) => {
-        // 1. Search Query String validation checking Name, Club, and Nationality
         const name = (player.name ?? "").toLowerCase();
         const club = (player.clubName ?? "").toLowerCase();
         const nationality = (player.country ?? "").toLowerCase();
@@ -32,7 +30,6 @@ export default function AllPlayersClient({ players }) {
         return matchesSearch;
       })
       .sort((a, b) => {
-        // 3. Float Rating sort execution criteria
         const ratingA = a.overallRating;
         const ratingB = b.overallRating;
         return sortOrder === "high-to-low"
@@ -43,7 +40,6 @@ export default function AllPlayersClient({ players }) {
 
   return (
     <div className="bg-[#0A0F0D] pt-14 text-[#E8ECE9] font-sans antialiased">
-      {/* Main Page Header */}
       <div className="max-w-[1320px] mx-auto px-8 pt-12 pb-6">
         <h1 className="font-['Space_Grotesk'] font-semibold text-[44px]">
           Players
@@ -53,22 +49,10 @@ export default function AllPlayersClient({ players }) {
         </p>
       </div>
 
-      {/* Database Interaction Workspace Dashboard */}
       <div className="max-w-[1320px] mx-auto px-8">
-        {/* Toolbar Container */}
-        <div className="flex gap-3 items-center mb-7">
+        <div className="flex gap-3 flex-wrap items-center mb-7">
           <div className="flex-1 flex items-center gap-2.5 bg-[#141B17] border border-[#1F2823] rounded-[10px] px-4 h-11">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#8A948E"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
+            <FaSearch color="#5C665F" />
             <input
               type="text"
               placeholder="Search by name, club, position or nationality..."
@@ -90,9 +74,7 @@ export default function AllPlayersClient({ players }) {
           </select>
         </div>
 
-        {/* Dynamic Structural Grid Layout splits workspace columns */}
         <div className="gap-8 pb-20">
-          {/* Results Main Dashboard Feed Output panel */}
           <div>
             <div className="flex justify-between items-center mb-5">
               <div className="text-[#8A948E] text-sm">
@@ -101,7 +83,6 @@ export default function AllPlayersClient({ players }) {
               </div>
             </div>
 
-            {/* Custom Subcomponent Wrapper Rendering */}
             {filteredAndSortedPlayers.length === 0 ? (
               <div className="text-center py-16 text-[#5C665F] text-sm">
                 No players match your filters.

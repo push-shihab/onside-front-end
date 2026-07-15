@@ -42,7 +42,7 @@ const ShowPlayer = ({ p }) => {
             Age {p.age} · {p.country}
           </span>
           <Link
-            href="#"
+            href={`/players/${p._id}`}
             className="text-xs font-semibold text-[#3FEA7A] hover:underline flex items-center gap-1"
           >
             View details <HiOutlineArrowRight />
