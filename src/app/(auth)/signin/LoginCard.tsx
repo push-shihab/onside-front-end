@@ -86,7 +86,7 @@ export default function LoginCard() {
               required: "Email address is required",
               pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" },
             })}
-            classNames={{
+            className={{
               inputWrapper:
                 "h-11 bg-[#0A0F0D] border-[#2A352E] hover:border-[#3FEA7A] focus-within:border-[#3FEA7A]! rounded-[10px] px-3.5",
             }}
@@ -108,7 +108,7 @@ export default function LoginCard() {
                 message: "Password must be at least 8 characters",
               },
             })}
-            classNames={{
+            className={{
               inputWrapper:
                 "h-11 bg-[#0A0F0D] border-[#2A352E] hover:border-[#3FEA7A] focus-within:border-[#3FEA7A]! rounded-[10px] px-3.5",
             }}

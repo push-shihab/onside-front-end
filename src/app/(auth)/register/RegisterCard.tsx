@@ -132,7 +132,7 @@ export default function RegisterCard() {
           isInvalid={!!errors.fullName}
           errorMessage={errors.fullName?.message}
           {...register("fullName", { required: "Full name is required" })}
-          classNames={{
+          className={{
             label: "text-xs font-medium text-[#8A948E] pb-1",
             inputWrapper:
               "h-11 bg-[#0A0F0D] border-[#2A352E] hover:border-[#3FEA7A] data-[focus=true]:border-[#3FEA7A]! rounded-[10px] px-3.5",
@@ -153,7 +153,7 @@ export default function RegisterCard() {
             required: "Email address is required",
             pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" },
           })}
-          classNames={{
+          className={{
             label: "text-xs font-medium text-[#8A948E] pb-1",
             inputWrapper:
               "h-11 bg-[#0A0F0D] border-[#2A352E] hover:border-[#3FEA7A] data-[focus=true]:border-[#3FEA7A]! rounded-[10px] px-3.5",
@@ -191,7 +191,7 @@ export default function RegisterCard() {
                   "Must contain at least 1 special character",
               },
             })}
-            classNames={{
+            className={{
               label: "text-xs font-medium text-[#8A948E] pb-1",
               inputWrapper:
                 "h-11 bg-[#0A0F0D] border-[#2A352E] hover:border-[#3FEA7A] data-[focus=true]:border-[#3FEA7A]! rounded-[10px] px-3.5",

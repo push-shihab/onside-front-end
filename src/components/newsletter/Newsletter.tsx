@@ -29,11 +29,7 @@ export default function Newsletter() {
                 defaultValue="shihab@onside.io"
                 placeholder="you@club.com"
                 variant="border"
-                className="w-full text-[#E8ECE9]"
-                classNames={{
-                  inputWrapper:
-                    "h-12 bg-[#0A0F0D] border-[#2A352E] hover:border-[#3FEA7A] focus-within:border-[#3FEA7A]! rounded-[10px] px-4",
-                }}
+                className="w-full h-12 text-[#393b3a]"
               />
               <Button
                 type="submit"

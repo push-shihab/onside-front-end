@@ -7,11 +7,13 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 
 export default function NavbarClient({ user }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const router = useRouter();
+  const path = usePathname();
+
   const handleSignOut = async (): Promise<void> => {
     const { data, error } = await authClient.signOut();
     if (data?.success) {
@@ -24,7 +26,20 @@ export default function NavbarClient({ user }) {
     }
   };
 
-  const menuItems = ["Home", "Players", "News", "Add Player", "Manage Players"];
+  const menuItems = [
+    { label: "Home", link: "/" },
+    { label: "Players", link: "/players" },
+    { label: "News", link: "/news" },
+    { label: "Add Players", link: "/players/add" },
+    { label: "Manage Players", link: "/players/manage" },
+  ];
+
+  const isLinkActive = (link: string) => {
+    if (link === "/") {
+      return path === "/";
+    }
+    return path === link || path.startsWith(`${link}/`);
+  };
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-[#1F2823] bg-[#0A0F0D]/70 backdrop-blur-lg">
@@ -50,24 +65,23 @@ export default function NavbarClient({ user }) {
         </div>
 
         <ul className="hidden items-center gap-1 md:flex">
-          <li>
-            <Link
-              href="/"
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#3FEA7A] bg-[#111714]"
-            >
-              Home
-            </Link>
-          </li>
-          {menuItems.slice(1).map((item, index) => (
-            <li key={index}>
-              <Link
-                href="#"
-                className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#8A948E] hover:bg-[#111714] hover:text-[#E8ECE9] transition-colors"
-              >
-                {item}
-              </Link>
-            </li>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = isLinkActive(item.link);
+            return (
+              <li key={index}>
+                <Link
+                  href={item.link}
+                  className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-[#3FEA7A] bg-[#111714]"
+                      : "text-[#8A948E] hover:bg-[#111714] hover:text-[#E8ECE9]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div>
@@ -106,19 +120,25 @@ export default function NavbarClient({ user }) {
 
       {isMenuOpen && (
         <div className="border-t border-[#1F2823] bg-[#0A0F0D] px-6 py-4 md:hidden flex flex-col gap-2">
-          {menuItems.map((item, index) => (
-            <Link
-              key={index}
-              className={`w-full block rounded-lg px-3 py-2 text-sm font-medium ${index === 0 ? "text-[#3FEA7A] bg-[#111714]" : "text-[#8A948E]"}`}
-              href="#"
-            >
-              {item}
-            </Link>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = isLinkActive(item.link);
+            return (
+              <Link
+                key={index}
+                className={`w-full block rounded-lg px-3 py-2 text-sm font-medium ${
+                  isActive ? "text-[#3FEA7A] bg-[#111714]" : "text-[#8A948E]"
+                }`}
+                href={item.link}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
           <div className="h-px bg-[#1F2823] my-2" />
           <Button
             variant="bordered"
             className="w-full border-[#2A352E] text-[#E8ECE9] h-10 rounded-[10px]"
+            onClick={handleSignOut}
           >
             Sign out
           </Button>
