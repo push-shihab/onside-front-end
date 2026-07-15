@@ -19,7 +19,7 @@ export default async function FeaturedPlayers() {
             </h2>
           </div>
           <Link
-            href="#"
+            href="/players"
             variant="border"
             size="sm"
             className="h-9 border-[#2A352E] rounded-[10px] text-xs font-semibold text-[#E8ECE9] hover:border-[#3FEA7A] hover:text-[#3FEA7A]"

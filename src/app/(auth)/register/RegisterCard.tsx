@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
-import { FaGoogle } from "react-icons/fa6";
 import { HiCloudUpload, HiCheckCircle } from "react-icons/hi";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
@@ -104,16 +103,6 @@ export default function RegisterCard() {
       <p className="text-sm text-[#8A948E] text-center mb-7">
         Join 48,000 fans, scouts, and analysts on ONSIDE.
       </p>
-
-      <div className="mb-5">
-        <Button
-          variant="bordered"
-          className="rounded-[10px] h-11 w-full bg-[#111714] border-[#1F2823] hover:border-[#3FEA7A] text-sm font-medium text-[#E8ECE9]"
-          startContent={<FaGoogle className="text-[#4285F4]" size={14} />}
-        >
-          Google
-        </Button>
-      </div>
 
       <div className="flex items-center gap-3 text-xs font-['IBM_Plex_Mono'] uppercase tracking-widest text-[#5C665F] my-5">
         <span className="flex-1 h-px bg-transparent bg-[linear-gradient(to_right,#2A352E_6px,transparent_6px)] bg-[length:12px_1px] bg-repeat-x" />

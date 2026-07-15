@@ -14,6 +14,11 @@ type LoginFormInputs = {
 };
 
 export default function LoginCard() {
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   const {
     register,
     handleSubmit,
@@ -56,6 +61,7 @@ export default function LoginCard() {
 
       <div className="mb-5">
         <Button
+          onClick={handleGoogleLogin}
           variant="bordered"
           className="h-11 w-full rounded-[10px] bg-[#111714] border-[#1F2823] hover:border-[#3FEA7A] text-sm font-medium text-[#E8ECE9]"
           startContent={<FaGoogle className="text-[#4285F4]" size={14} />}

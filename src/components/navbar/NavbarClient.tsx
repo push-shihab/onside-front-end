@@ -34,6 +34,8 @@ export default function NavbarClient({ user }) {
     { label: "Manage Players", link: "/players/manage" },
   ];
 
+  const visibleMenuItems = user ? menuItems : menuItems.slice(0, 4);
+
   const isLinkActive = (link: string) => {
     if (link === "/") {
       return path === "/";
@@ -65,7 +67,7 @@ export default function NavbarClient({ user }) {
         </div>
 
         <ul className="hidden items-center gap-1 md:flex">
-          {menuItems.map((item, index) => {
+          {visibleMenuItems.map((item, index) => {
             const isActive = isLinkActive(item.link);
             return (
               <li key={index}>

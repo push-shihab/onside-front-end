@@ -1,4 +1,6 @@
+"use server";
 import { ObjectId } from "mongodb";
+import { authHeader } from "./secureRoute";
 
 const baseUrl = process.env.NEXT_PUBLIC_SERVER;
 export const deletePlayer = async (id: ObjectId) => {
@@ -6,6 +8,7 @@ export const deletePlayer = async (id: ObjectId) => {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
+      ...(await authHeader()),
     },
   });
   return res.json();
